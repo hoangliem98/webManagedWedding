@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="/templates/layout/base.xhtml">
+            <ui:define name="content">
+                <div class="page-header menu-header">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-caption">
+                                    <h1 class="page-title">Thực đơn</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr width="90%" size="100px" align="center"/>
+                <div class="container">
+                    <div class="row">
+                        <c:forEach var="menu" items="#{menuBean.menus}">
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="destination-block">
+                                    <div class="desti-img">
+                                        <h:graphicImage name="menu/#{menu.image}" library="images" />
+                                        <a href="#" class="desti-title">#{menu.name}</a>
+                                        <div class="overlay"></div>
+                                        <div class="text">
+                                            <span class="item-content"><h:outputText value="#{menu.content}" escape="false"/></span>
+                                            <p class="item-price">
+                                                <h:outputText value = "#{menu.price}" >
+                                                    <f:convertNumber type = "number" />
+                                                </h:outputText><small> đồng</small>
+                                            </p>
+                                            <h:link outcome="menu-detail" class="btn-link">Xem ngay <i class="fa fa-angle-right"></i>
+                                                <f:param name="menu_id" value="#{menu.id}" />
+                                            </h:link>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>      
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

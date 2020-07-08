@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="layout/base.xhtml">
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <c:if test="#{userBean.usId > 0}">
+                                <h1 class="page-header">#{Msg['user.update']}</h1>
+                            </c:if>
+                            <c:if test="#{userBean.usId == 0}">
+                                <h1 class="page-header">#{Msg['user.add']}</h1>
+                            </c:if>
+                        </div>
+                        <div class="col-lg-7" style="padding-bottom:120px">
+                            <h:messages class="alert alert-danger list-unstyled" />
+                            <h:form enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['user.user_name']}" />
+                                    <h:inputText styleClass="form-control" value="#{userBean.user_name}" p:placeholder="#{Msg['user.user_name']}" required="true"/>
+                                </div>
+                                <c:if test="#{userBean.usId == 0}">
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['user.password']}" />
+                                        <h:inputSecret id="txtPassword" styleClass="form-control" value="#{userBean.password}" p:placeholder="#{Msg['user.password']}" required="true" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['user.confirm_password']}" />
+                                        <h:inputSecret id="txtConfirmPassword" styleClass="form-control" value="#{userBean.confirmPassword}" p:placeholder="#{Msg['user.confirm_password']}" required="true" />
+                                    </div>
+                                </c:if>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['image']}" />
+                                    <h:inputFile class="input-img" id="image_upload" value="#{userBean.imageFile}" validator="UploadImageValidator" />
+                                    <h:outputLabel class="instead-img" for="image_upload" >
+                                        <c:if test="#{userBean.usId > 0}" >
+                                            <h:graphicImage class="image_preview_container" name="users/#{userBean.image}" library="images" alt="preview image" />
+                                        </c:if>
+                                        <c:if test="#{userBean.usId == 0}">
+                                            <h:graphicImage class="image_preview_container" name="preview.jpg" library="images" alt="preview image" />
+                                        </c:if>
+                                    </h:outputLabel>
+                                    <h:message for="image_upload" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['user.name']}" />
+                                    <h:inputText styleClass="form-control" value="#{userBean.name}" p:placeholder="#{Msg['user.name']}" required="true" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['user.email']}" />
+                                    <h:inputText styleClass="form-control" value="#{userBean.email}" p:placeholder="#{Msg['user.email']}" required="true" />
+                                </div>
+                                <div class="form-group radio-button">
+                                    <h:outputLabel value="#{Msg['user.roles']}" />
+                                    <h:selectOneRadio value="#{userBean.roles}" required="true">
+                                        <f:selectItem itemValue="0" itemLabel="Thường" /><br/>
+                                        <f:selectItem itemValue="1" itemLabel="Admin" />
+                                    </h:selectOneRadio>
+                                </div>
+                                <h:inputHidden value="#{userBean.usId}" />
+                                <h:commandButton value="#{Msg['submit']}" action="#{userBean.addUsers()}" class="btn btn-danger" /> 
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <h:outputScript target="body">
+                    $('#user').addClass('active');
+                </h:outputScript>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

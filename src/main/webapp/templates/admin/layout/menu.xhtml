@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard.xhtml">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fas fa-laugh-wink"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">OU Wedding</div>
+        </a>
+        <hr class="sidebar-divider my-0" />
+        <li class="nav-item" id="dashboard">
+            <h:link class="nav-link" outcome="dashboard">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+            </h:link>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item" id="user">
+            <h:link class="nav-link" outcome="user-list">
+                <i class="fas fa-id-card"></i>
+                <span>Quản lý tài khoản</span>
+            </h:link>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item" id="hall">
+            <h:link class="nav-link" outcome="hall-list">
+                <i class="fas fa-university"></i>
+                <span>Quản lý sảnh</span>
+            </h:link>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item" id="menu">
+            <h:link class="nav-link" outcome="menu-list">
+                <i class="fas fa-map"></i>
+                <span>Quản lý thực đơn</span>
+            </h:link>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item" id="service">
+            <h:link class="nav-link" outcome="service-list">
+                <i class="fas fa-tags"></i>
+                <span>Quản lý dịch vụ</span>
+            </h:link>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item" id="booking">
+            <h:link class="nav-link collapsed" outcome="booking-list">
+                <i class="fas fa-list-alt"></i>
+                <span>Danh sách đơn hàng</span>
+            </h:link>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item" id="payment">
+            <h:link class="nav-link collapsed" outcome="payment-list">
+                <i class="fas fa-indent"></i>
+                <span>Danh sách đơn thanh toán</span>
+            </h:link>
+        </li>
+        <hr class="sidebar-divider" />
+        <li class="nav-item" id="customer">
+            <h:link class="nav-link" outcome="customer-list">
+                <i class="fas fa-user-secret"></i>
+                <span>Quản lý khách hàng</span>
+            </h:link>
+        </li>
+        <hr class="sidebar-divider d-none d-md-block" />
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+    </ul>
+</ui:composition>
+

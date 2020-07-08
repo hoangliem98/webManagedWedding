@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <ul class="navbar-nav ml-auto">
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+                <c:if test="#{facesContext.externalContext.sessionMap.get('user')!= null}" >
+                    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">#{facesContext.externalContext.sessionMap.get('user').name}</span>
+                        <h:graphicImage class="img-profile rounded-circle" name="users/#{facesContext.externalContext.sessionMap.get('user').image}" library="images" />
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            Đăng xuất
+                        </a>
+                    </div>
+                </c:if>
+            </li>
+
+        </ul>
+
+    </nav>
+</ui:composition>
+

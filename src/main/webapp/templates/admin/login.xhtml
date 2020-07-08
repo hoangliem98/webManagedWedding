@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Admin - Đăng nhập</title>
+        <link rel="shortcut icon" href="/ou-wedding/resources/images/ou-icon.ico"></link>
+        <h:outputStylesheet name="vendor/fontawesome-free/css/all.min.css" library="admin_asset" />
+        <script src="https://kit.fontawesome.com/af1851a53b.js" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"></link>
+        <h:outputStylesheet name="css/sb-admin-2.min.css" library="admin_asset" />
+    </h:head>
+    <h:body class="bg-gradient-primary">
+        <f:metadata>
+            <f:viewAction action="#{userBean.checkLoginAdmin()}" />
+        </f:metadata>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10 col-lg-12 col-md-9">
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0">
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Đăng nhập</h1>
+                                        </div>
+                                        <h:messages class="alert alert-danger list-unstyled" />
+                                        <h:form class="user">
+                                            <div class="form-group">
+                                                <h:inputText class="form-control form-control-user" value="#{userBean.user_name}" p:placeholder="Tên đăng nhập" required="true" requiredMessage="Nhập tên đăng nhập"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:inputSecret class="form-control form-control-user" value="#{userBean.password}" p:placeholder="Mật khẩu" required="true" requiredMessage="Nhập mật khẩu"/>
+                                            </div>
+                                            <h:commandButton value="Đăng nhập" action="#{userBean.loginAdmin()}"  class="btn btn-primary btn-user btn-block" />
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h:outputScript name="vendor/jquery/jquery.min.js" library="admin_asset" />
+        <h:outputScript name="vendor/bootstrap/js/bootstrap.bundle.min.js" library="admin_asset" />
+        <h:outputScript name="vendor/jquery-easing/jquery.easing.min.js" library="admin_asset" />
+        <h:outputScript name="js/sb-admin-2.min.js" library="admin_asset" />
+    </h:body>
+</html>
+

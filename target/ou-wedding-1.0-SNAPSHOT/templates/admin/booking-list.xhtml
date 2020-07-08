@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="layout/base.xhtml">
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <h1 class="h3 mb-2 text-gray-800">#{Msg['bookings.list']}</h1>
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#{Msg['bookings.hall']}</th>
+                                            <th class="text-center">#{Msg['bookings.menu']}</th>
+                                            <th class="text-center">#{Msg['bookings.service']}</th>
+                                            <th class="text-center">#{Msg['bookings.customer']}</th>
+                                            <th class="text-center">#{Msg['bookings.season']}</th>
+                                            <th class="text-center">#{Msg['bookings.number_of_tables']}</th>
+                                            <th class="text-center" style="width: 13%">#{Msg['bookings.organization_date']}</th>
+                                            <th class="text-center">#{Msg['bookings.price']}</th>
+                                            <th class="text-center">Thanh toán</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="booking" items="#{bookingBean.bookings}">
+                                            <tr>
+                                                <td class="text-center">#{booking.hall.name}</td>
+                                                <td class="text-center">#{booking.menu.name}</td>
+                                                <td>
+                                                    <ul class="list-group">
+                                                        <c:forEach var="service" items="#{booking.service_booking}">
+                                                            <li class="list-group-item">#{service.name}</li>
+                                                        </c:forEach>
+                                                    </ul>
+                                                </td>
+                                                <td class="text-center">#{booking.customer.first_name} #{booking.customer.last_name}</td>
+                                                <td class="text-center">#{booking.season}</td>
+                                                <td class="text-center">#{booking.number_of_tables}</td>
+                                                <td class="text-center">#{booking.organization_date}</td>
+                                                <td class="text-center">
+                                                    <h:outputText value = "#{booking.price}" >
+                                                        <f:convertNumber type = "number" />
+                                                    </h:outputText>
+                                                </td>
+                                                <td>
+                                                    <c:if test="#{booking.payment_status == 'Chưa thanh toán'}">
+                                                        <h:form><h:commandButton value="Thanh toán" action="#{paymentBean.addPayment(booking)}" styleClass="btn btn-success" /></h:form>
+                                                    </c:if>
+                                                    <c:if test="#{booking.payment_status == 'Đã thanh toán'}">
+                                                        <p>#{booking.payment_status}</p>
+                                                    </c:if>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h:outputScript target="body">
+                    $('#booking').addClass('active');
+                </h:outputScript>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

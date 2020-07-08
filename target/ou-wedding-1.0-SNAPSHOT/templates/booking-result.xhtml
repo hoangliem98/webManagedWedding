@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="/templates/layout/base.xhtml">
+            <ui:define name="content">
+                <div class="page-header success">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-caption">
+                                    <h1 class="page-title">Đặt hàng thành công</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr width="90%" size="100px" align="center"/>
+                <div class="content">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="tour-booking-form">
+                                <h1>Chi tiết đơn hàng</h1>
+                                <hr style="width: 100% !important;" size="100px" align="center"/>
+                                <div class="booking-result">
+                                    <p class="title-booking">Mã đơn hàng:</p>
+                                    <p>#{bookingResultBean.bkId}</p>
+                                </div>
+                                <div class="booking-result">
+                                    <p class="title-booking">Sảnh cưới:</p>
+                                    <p>#{bookingResultBean.hall.name} 
+                                        ( Giá tiền: <h:outputText value = "#{bookingResultBean.hall.price}" >
+                                            <f:convertNumber type = "number" />
+                                        </h:outputText> đồng ) </p>
+                                </div>
+                                <div class="booking-result">
+                                    <p class="title-booking">Buổi:</p>
+                                    <p>#{bookingResultBean.season}</p>
+                                </div>
+                                <div class="booking-result">
+                                    <p class="title-booking">Số bàn:</p>
+                                    <p>#{bookingResultBean.number_of_tables}</p>
+                                </div>
+                                <div class="booking-result">
+                                    <p class="title-booking">Thực đơn:</p>
+                                    <p>#{bookingResultBean.menu.name}
+                                        ( Giá tiền: <h:outputText value = "#{bookingResultBean.menu.price}" >
+                                            <f:convertNumber type = "number" />
+                                        </h:outputText> đồng ) </p>
+                                </div>                               
+                                <c:if test="#{bookingResultBean.service_booking == null}">
+                                    <div class="booking-result">
+                                        <p class="title-booking">Dịch vụ:</p>
+                                        <p>Không có</p>
+                                    </div>
+                                </c:if>
+                                <c:if test="#{bookingResultBean.service_booking.size() != null}">
+                                    <p style="margin-bottom: 8px;">Dịch vụ:</p>
+                                    <ul class="list-group" style="margin: 0 0 30px 40px;">
+                                        <c:forEach var="service" items="#{bookingResultBean.service_booking}">
+                                            <li class="">#{service.name} 
+                                                ( Giá tiền: <h:outputText value = "#{service.price}" >
+                                                    <f:convertNumber type = "number" />
+                                                </h:outputText> đồng )</li>
+                                        </c:forEach>
+                                    </ul>
+                                </c:if>
+                                <div class="booking-result">
+                                    <p class="title-booking">Khách hàng:</p>
+                                    <p>#{bookingResultBean.customer.first_name} #{bookingResultBean.customer.last_name}</p>
+                                </div>
+                                <div class="booking-result">
+                                    <p class="title-booking">Ngày tổ chức:</p>
+                                    <p>#{bookingResultBean.organization_date}</p>
+                                </div>
+                                <div class="booking-result">
+                                    <p class="title-booking">Ngày đặt:</p>
+                                    <p>#{bookingResultBean.booking_date}</p>
+                                </div>
+                                <div class="booking-result">
+                                    <p class="title-booking">Tổng tiền:</p>
+                                    <p><h:outputText value = "#{bookingResultBean.price}" >
+                                            <f:convertNumber type = "number" />
+                                        </h:outputText> đồng</p>         
+                                </div>  
+                                <hr style="width: 100% !important;" size="100px" align="center"/>
+                                <small><strong>Cảm ơn quý khách đã lựa chọn chúng tôi.</strong></small><br/>
+                                <small><strong>Lưu ý: </strong> Quý khách vui lòng thanh toán trước khi lễ cưới được tổ chức tránh mất thêm phí. ( Thanh toán trễ phạt 1%/ngày )</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

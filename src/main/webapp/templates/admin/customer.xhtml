@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="layout/base.xhtml">
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <c:if test="#{customerBean.csId > 0}">
+                                <h1 class="page-header">#{Msg['customers.update']}</h1>
+                            </c:if>
+                            <c:if test="#{customerBean.csId == 0}">
+                                <h1 class="page-header">#{Msg['customers.add']}</h1>
+                            </c:if>
+                        </div>
+                        <div class="col-lg-7" style="padding-bottom:120px">
+                            <h:form enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['customers.first_name']}" />
+                                    <h:inputText styleClass="form-control" value="#{customerBean.firstname}" p:placeholder="#{Msg['customers.first_name']}" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['customers.last_name']}" />
+                                    <h:inputText styleClass="form-control" value="#{customerBean.lastname}" p:placeholder="#{Msg['customers.last_name']}" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['customers.phone_number']}" />
+                                    <h:inputText styleClass="form-control" value="#{customerBean.phone}" p:placeholder="#{Msg['customers.phone_number']}" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['customers.email']}" />
+                                    <h:inputText styleClass="form-control" value="#{customerBean.email}" p:placeholder="#{Msg['customers.email']}" required="true"/>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['customers.address']}" />
+                                    <h:inputText styleClass="form-control" value="#{customerBean.address}" p:placeholder="#{Msg['customers.address']}" required="true"/>
+                                </div>
+                                <h:inputHidden value="#{customerBean.csId}" />
+                                <h:commandButton type="submit" value="#{Msg['submit']}"  action="#{customerBean.addCustomer()}" class="btn btn-danger" /> 
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <h:outputScript target="body">
+                    $('#customer').addClass('active');
+                </h:outputScript>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

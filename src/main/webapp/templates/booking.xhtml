@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="/templates/layout/base.xhtml">
+            <ui:define name="content">
+                <div class="page-header booking">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-caption">
+                                    <h1 class="page-title">Đặt sảnh cưới</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr width="90%" size="100px" align="center"/>
+                <div class="content">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="tour-booking-form">
+                                <h:messages class="alert alert-danger list-unstyled" />
+                                <h:form enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                            <h4 class="tour-form-title">Sảnh cưới</h4>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <h:outputLabel class="control-label required" for="select">Sảnh cưới<span class="text-danger"> *</span></h:outputLabel>
+                                                <h:selectOneMenu value="#{bookingBean.hall}" class="form-control" converter="HallCoverter">
+                                                    <f:selectItems var="hall" 
+                                                                   value="#{hallBean.halls}" 
+                                                                   itemValue="#{hall}" 
+                                                                   itemLabel="#{hall.name} - #{hall.price} đồng" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                            <div class="form-group radio-button">
+                                                <h:outputLabel value="Tổ chức buổi: "><span class="text-danger"> *</span></h:outputLabel>
+                                                <h:selectOneRadio value="#{bookingBean.season}" id="season"
+                                                                  required="true"
+                                                                  requiredMessage="Vui lòng chọn buổi">
+                                                    <f:selectItem itemValue="Trưa" itemLabel="Trưa" />
+                                                    <f:selectItem itemValue="Tối" itemLabel="Tối" />
+                                                </h:selectOneRadio>
+                                                <div class="invalid-feedback" style="display: block">
+                                                    <h:message for="season"/>
+                                                </div>
+                                            </div>
+                                            <div class="flex">
+                                                <div class="form-group table">
+                                                    <h:outputLabel value="Số bàn"><span class="text-danger"> *</span></h:outputLabel>
+                                                    <h:inputText class="form-control" value="#{bookingBean.number_of_tables}" id="number_table"
+                                                                 validatorMessage="Số bàn ít nhất là 100 bàn và nhiều nhất là 1000 tùy sảnh">
+                                                        <f:validateLongRange minimum="100" maximum="1000"/>
+                                                    </h:inputText>
+                                                    <div class="invalid-feedback" style="display: block">
+                                                        <h:message for="number_table"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group org_date">
+                                                    <h:outputLabel value="Ngày tổ chức"><span class="text-danger"> *</span></h:outputLabel>
+                                                    <div class="input-group date" id="datepicker">
+                                                        <h:inputText class="form-control" value="#{bookingBean.organization_date}">
+                                                            <f:convertDateTime pattern="yyyy-MM-dd" />
+                                                        </h:inputText>
+                                                        <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                            <h4 class="tour-form-title">Thực đơn</h4>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <h:outputLabel class="control-label required" for="select">Chọn thực đơn<span class="text-danger"> *</span></h:outputLabel>
+
+                                                <h:selectOneMenu value="#{bookingBean.menu}" 
+                                                                 styleClass="form-control menu" 
+                                                                 converter="MenuCoverter">
+                                                    <f:selectItems var="menu" 
+                                                                   value="#{menuBean.menus}" 
+                                                                   itemValue="#{menu}" 
+                                                                   itemLabel="#{menu.name} - #{menu.price} đồng" />
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                            <h4 class="tour-form-title">Dịch vụ</h4>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group service-checckbox">
+                                                <h:outputLabel class="control-label required" for="select">Chọn dịch vụ</h:outputLabel><br/>
+                                                <h:selectManyCheckbox value="#{bookingBean.service_booking}" converter="ServiceConverter">
+                                                    <f:selectItems var="service" value="#{serviceBean.services}" 
+                                                                   itemValue="#{service}" itemLabel="#{service.name} - #{service.price} đồng" />
+                                                    <f:ajax onevent="totalService"/>   
+                                                </h:selectManyCheckbox> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                                            <h4 class="tour-form-title">Khách hàng</h4>
+                                        </div>
+                                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                            <div class="form-group">
+                                                <h:outputLabel class="control-label required" for="select">Họ<span class="text-danger"> *</span></h:outputLabel>
+                                                <h:inputText class="form-control" value="#{bookingBean.first_name}" p:placeholder="Vui lòng nhập họ" 
+                                                             id="first_name"
+                                                             required="true"
+                                                             requiredMessage="Vui lòng nhập họ"/>
+                                                <div class="invalid-feedback" style="display: block">
+                                                    <h:message for="first_name"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputLabel class="control-label">Tên<span class="text-danger"> *</span></h:outputLabel>
+                                                <h:inputText class="form-control" value="#{bookingBean.last_name}" p:placeholder="Vui lòng nhập tên" 
+                                                             id="last_name"
+                                                             required="true"
+                                                             requiredMessage="Vui lòng nhập tên"/>
+                                                <div class="invalid-feedback" style="display: block">
+                                                    <h:message for="last_name"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputLabel class="control-label">Số điện thoại<span class="text-danger"> *</span></h:outputLabel>
+                                                <h:inputText class="form-control" 
+                                                             id="sdt"
+                                                             required="true"
+                                                             validatorMessage="Số điện thoại không hợp lệ"
+                                                             requiredMessage="Vui lòng nhập vào số điện thoại"
+                                                             value="#{bookingBean.phone_number}" 
+                                                             p:placeholder="Vui lòng nhập số điện thoại" >
+                                                    <f:validateLongRange minimum="019999999" maximum="9999999999"/>
+                                                </h:inputText>
+                                                <div class="invalid-feedback" style="display: block">
+                                                    <h:message for="sdt"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputLabel class="control-label">Email<span class="text-danger"> *</span></h:outputLabel>
+                                                <h:inputText class="form-control" value="#{bookingBean.email}" p:placeholder="Vui lòng nhập email"
+                                                             id="email"
+                                                             required="true"
+                                                             requiredMessage="Vui lòng nhập email"/>
+                                                <div class="invalid-feedback" style="display: block">
+                                                    <h:message for="email"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <h:outputLabel class="control-label">Địa chỉ<span class="text-danger"> *</span></h:outputLabel>
+                                                <h:inputText class="form-control" value="#{bookingBean.address}" p:placeholder="Vui lòng nhập địa chỉ"
+                                                             id="address"
+                                                             required="true"
+                                                             requiredMessage="Vui lòng nhập địa chỉ"/>
+                                                <div class="invalid-feedback" style="display: block">
+                                                    <h:message for="address"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr width="70%" size="100px" align="center"/>
+                                    <h:commandButton value="#{Msg['submit']}" action="#{bookingBean.add()}" class="btn btn-primary" />
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

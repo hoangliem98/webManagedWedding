@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="layout/base.xhtml">
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <h1 class="h3 mb-2 text-gray-800">Danh sách đơn thanh toán</h1>
+                    <div class="card shadow mb-4">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Mã đơn hàng</th>
+                                            <th class="text-center">Người thanh toán</th>
+                                            <th class="text-center">Khách hàng</th>
+                                            <th class="text-center">Tạm tính</th>
+                                            <th class="text-center">Phụ phí</th>
+                                            <th class="text-center">Lý do trả phụ phí</th>
+                                            <th class="text-center">Tổng tiền</th>
+                                            <th class="text-center">Ngày thanh toán</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="payment" items="#{paymentBean.payments}">
+                                            <tr>
+                                                <td class="text-center">#{payment.booking.id}</td>
+                                                <td class="text-center">#{payment.user.name}</td>
+                                                <td class="text-center">#{payment.booking.customer.first_name} #{payment.booking.customer.last_name}</td>
+                                                <td class="text-center">
+                                                    <h:outputText value = "#{payment.temporary_price}" >
+                                                        <f:convertNumber type = "number" />
+                                                    </h:outputText>
+                                                </td>
+                                                <td class="text-center">
+                                                    <h:outputText value = "#{payment.delayed_price}" >
+                                                        <f:convertNumber type = "number" />
+                                                    </h:outputText>
+                                                </td>
+                                                <td class="text-center">#{payment.delayed_content}</td>
+                                                <td class="text-center">
+                                                    <h:outputText value = "#{payment.total_price}" >
+                                                        <f:convertNumber type = "number" />
+                                                    </h:outputText>
+                                                </td>
+                                                <td class="text-center">#{payment.payment_date}</td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h:outputScript target="body">
+                    $('#payment').addClass('active');
+                </h:outputScript>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="/templates/layout/base.xhtml">
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <div class="text-center">
+                        <div class="error mx-auto" data-text="404">404</div>
+                        <p class="lead text-gray-800 mb-5">Không tìm thấy trang</p>
+                        <p class="text-gray-500 mb-0">Thật xin lỗi trang bạn đang tìm không tồn tại ...</p>
+                        <h:link outcome="home">&larr; Trở lại trang chủ</h:link>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

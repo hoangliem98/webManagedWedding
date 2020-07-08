@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Admin - OU Wedding</title>
+        <link rel="shortcut icon" href="/ou-wedding/resources/images/ou-icon.ico"></link>
+        <h:outputStylesheet name="vendor/fontawesome-free/css/all.min.css" library="admin_asset" />
+        <script src="https://kit.fontawesome.com/af1851a53b.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"></link>
+        <h:outputStylesheet name="css/sb-admin-2.min.css" library="admin_asset" />
+        <h:outputStylesheet name="vendor/datatables/dataTables.bootstrap4.min.css" library="admin_asset"/>
+        <h:outputStylesheet name="custom.css" library="css"/>
+        <h:outputStylesheet name="css/sweetalert2.min.css" library="admin_asset"/>
+        <f:loadBundle var="Msg" basename="wedding" />
+    </h:head>
+    <h:body id="page-top" class="loading-active">
+        <div class="loader"></div>
+        <div id="wrapper">
+            <ui:insert name="menu">
+                <ui:include src="menu.xhtml" /> 
+                <ui:include src="logout_modal.xhtml" />
+            </ui:insert>
+            <div id="content-wrapper" class="d-flex flex-column">
+                <div id="content">
+                    <ui:insert name="header">
+                        <ui:include src="header.xhtml" /> 
+                    </ui:insert>
+                    <ui:insert name="content">
+                        <ui:include src="content.xhtml" /> 
+                    </ui:insert>
+                </div>
+                <ui:insert name="footer">
+                    <ui:include src="footer.xhtml" /> 
+                </ui:insert>
+            </div>
+        </div>
+        <h:outputScript name="vendor/jquery/jquery.min.js" library="admin_asset" />
+        <h:outputScript name="vendor/bootstrap/js/bootstrap.bundle.min.js" library="admin_asset" />
+        <h:outputScript name="vendor/jquery-easing/jquery.easing.min.js" library="admin_asset" />
+        <h:outputScript name="js/sb-admin-2.min.js" library="admin_asset" />
+        <h:outputScript name="vendor/chart.js/Chart.min.js" library="admin_asset" />
+        <h:outputScript name="js/demo/chart-area-demo.js" library="admin_asset" />
+        <h:outputScript name="js/demo/chart-pie-demo.js" library="admin_asset" />
+        <h:outputScript name="vendor/datatables/jquery.dataTables.min.js" library="admin_asset" />
+        <h:outputScript name="vendor/datatables/dataTables.bootstrap4.min.js" library="admin_asset" />
+        <h:outputScript name="js/demo/datatables-demo.js" library="admin_asset" />
+        <h:outputScript name="custom.js" library="js" />
+        <h:outputScript name="js/sweetalert2.min.js" library="admin_asset" />
+        <script src="https://cdn.ckeditor.com/4.14.0/basic/ckeditor.js"></script>
+    </h:body>
+</html>
+

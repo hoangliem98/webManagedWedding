@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="/templates/layout/base.xhtml">
+            <ui:define name="content">
+                <f:metadata>
+                    <f:viewAction action="#{userBean.checkLogin()}" />
+                </f:metadata>
+                <div class="page-header login">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-caption">
+                                    <h1 class="page-title">Đăng nhập</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr width="90%" size="100px" align="center"/>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="tour-booking-form">
+                        <h:messages class="alert alert-danger list-unstyled" />
+                        <h:form>
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <h:outputLabel class="control-label" value="#{Msg['user.user_name']}" />
+                                        <h:inputText p:placeholder="Nhập tên đăng nhập" value="#{userBean.user_name}" class="form-control" required="true" requiredMessage="Nhập tên đăng nhập" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel class="control-label" value="#{Msg['user.password']}" />
+                                        <h:inputSecret p:placeholder="Nhập mật khẩu" value="#{userBean.password}" class="form-control" required="true" requiredMessage="Nhập mật khẩu" />
+                                    </div>
+                                    <h:commandButton value="Đăng nhập" action="#{userBean.login()}" class="btn btn-primary" style="margin: 0 37%;" /> 
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

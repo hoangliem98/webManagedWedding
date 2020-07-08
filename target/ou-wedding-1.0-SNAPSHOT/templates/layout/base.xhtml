@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>OU Wedding</title>
+        <link rel="shortcut icon" href="/ou-wedding/resources/images/ou-icon.ico"></link>
+        <h:outputStylesheet name="bootstrap.min.css" library="css"></h:outputStylesheet>
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/af1851a53b.js"></script>
+        <h:outputStylesheet name="owl.carousel.css" library="css"></h:outputStylesheet>
+        <h:outputStylesheet name="owl.theme.default.css" library="css"></h:outputStylesheet>
+        <h:outputStylesheet name="jquery-ui.css" library="css"></h:outputStylesheet>
+        <h:outputStylesheet name="font-awesome.min.css" library="css"></h:outputStylesheet>
+        <h:outputStylesheet name="css/sb-admin-2.min.css" library="admin_asset" />
+        <h:outputStylesheet name="style.css" library="css"></h:outputStylesheet>
+        <h:outputStylesheet name="custom.css" library="css"></h:outputStylesheet>
+        <f:loadBundle var="Msg" basename="wedding" />
+    </h:head>
+    <h:body class="loading-active">
+        <div class="loader"></div>
+        <div class="wrapper">
+            <ui:insert name="header">
+                <ui:include src="header.xhtml" /> 
+                <ui:include src="search_modal.xhtml" /> 
+            </ui:insert>
+            <ui:insert name="content">
+                <ui:include src="content.xhtml" /> 
+            </ui:insert>
+            <ui:insert name="footer">
+                <ui:include src="footer.xhtml" /> 
+            </ui:insert>
+            <h:outputScript name="jquery.min.js" library="js"></h:outputScript>
+            <h:outputScript name="bootstrap.min.js" library="js"></h:outputScript>
+            <h:outputScript name="menumaker.js" library="js"></h:outputScript>
+            <h:outputScript name="jquery.sticky.js" library="js"></h:outputScript>
+            <h:outputScript name="sticky-header.js" library="js"></h:outputScript>
+            <h:outputScript name="owl.carousel.min.js" library="js"></h:outputScript>
+            <h:outputScript name="multiple-carousel.js" library="js"></h:outputScript>
+            <h:outputScript name="jquery-ui.js" library="js"></h:outputScript>
+            <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" />
+            <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+            <h:outputScript name="return-to-top.js" library="js"></h:outputScript>
+            <h:outputScript name="custom.js" library="js" ></h:outputScript>
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="layout/base.xhtml">
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <h1 class="h3 mb-2 text-gray-800">#{Msg['hall.admin']}</h1>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3" style="display: flex;">
+                            <h6 class="m-0 font-weight-bold text-primary" style="width: 50%; padding-top: 8px;">#{Msg['hall.list']}</h6>
+                            <div style="width: 50%;">
+                                <h:link outcome="hall" class="button-them">
+                                    <i class="fa fa-plus-square" aria-hidden="true"></i> #{Msg['hall.add']}</h:link>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#{Msg['id']}</th>
+                                            <th class="text-center">#{Msg['hall.name']}</th>
+                                            <th class="text-center">#{Msg['hall.description']}</th>
+                                            <th class="text-center">#{Msg['image']}</th>
+                                            <th class="text-center">#{Msg['hall.minimum_tables']}</th>
+                                            <th class="text-center">#{Msg['hall.maximum_tables']}</th>
+                                            <th class="text-center">#{Msg['hall.price']}</th>
+                                            <th class="text-center">#{Msg['action']}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach var="hall" items="#{pageBean.halls}">
+                                            <tr>
+                                                <td class="text-center">#{hall.id}</td>
+                                                <td class="text-center">#{hall.name}</td>
+                                                <td class="text-center minimize" id="forhtml"><h:outputText value="#{hall.description}" escape="false" /></td>
+                                                <td class="text-center"><h:graphicImage name="halls/#{hall.image}" library="images" styleClass="admin-image"/></td>
+                                                <td class="text-center">#{hall.minimum_tables}</td>
+                                                <td class="text-center">#{hall.maximum_tables}</td>
+                                                <td class="text-center">
+                                                    <h:outputText value = "#{hall.price}" >
+                                                        <f:convertNumber type = "number" />
+                                                    </h:outputText>
+                                                </td>
+                                                <td class="text-center" style="width: 15%">
+                                                    <h:form>
+                                                        <h:link class="btn btn-light" title="#{Msg['update']}" includeViewParams="true" outcome="hall?faces-redirect=true">
+                                                            <i class="fa fa-pencil" style="color: #0094cf"></i>
+                                                            <f:param name="hall_id" value="#{hall.id}" />
+                                                        </h:link>                 
+                                                        <h:commandLink class="btn btn-light delete" title="#{Msg['delete']}" style="cursor: pointer;">
+                                                            <i class="fa fa-trash-o" style="color: red"></i>
+                                                            <f:ajax listener="#{hallBean.deleteHall(hall)}" onevent="deleteSuccess" onerror="deleteError" />
+                                                        </h:commandLink>   
+                                                    </h:form>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h:outputScript target="body">
+                    $('#hall').addClass('active');
+                </h:outputScript>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

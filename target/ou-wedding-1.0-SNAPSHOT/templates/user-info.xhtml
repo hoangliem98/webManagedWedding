@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="/templates/layout/base.xhtml">
+            <ui:define name="content">
+                <div class="page-header login">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-caption">
+                                    <h1 class="page-title">Thông tin tài khoản</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr width="90%" size="100px" align="center"/>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="tour-booking-form">
+                        <h:messages class="alert alert-danger list-unstyled" />
+                        <h:form enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Họ tên" />
+                                        <h:inputText styleClass="form-control" value="#{userBean.name}" p:placeholder="Nhập họ tên" required="true" requiredMessage="Vui lòng nhập họ tên" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['image']}" />
+                                        <h:inputFile class="input-img" id="image_upload" value="#{userBean.imageFile}" validator="UploadImageValidator" />
+                                        <h:outputLabel class="instead-img" for="image_upload" >
+                                            <h:graphicImage class="image_preview_container" name="users/#{userBean.image}" library="images" alt="preview image" />
+                                        </h:outputLabel>
+                                        <h:message for="image_upload" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['user.email']}" />
+                                        <h:inputText styleClass="form-control" value="#{userBean.email}" p:placeholder="#{Msg['user.email']}" required="true" requiredMessage="Vui lòng nhập Email" />
+                                    </div>
+                                    <h:inputHidden value="#{userBean.usId}" />
+                                    <div class="action-user">
+                                        <h:commandButton value="#{Msg['submit']}" action="#{userBean.updateUser()}" class="btn btn-primary" /> 
+                                        <h:link outcome="change-password" class="btn btn-primary" style="margin: 0 37%;"> Đổi mật khẩu
+                                            <f:param name="user_id" value="#{userBean.usId}" />
+                                        </h:link> 
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

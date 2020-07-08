@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="/templates/layout/base.xhtml">
+            <ui:define name="content">
+                <f:metadata>
+                    <f:viewAction action="#{userBean.checkLogin()}" />
+                </f:metadata>
+                <div class="page-header login">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="page-caption">
+                                    <h1 class="page-title">Đăng ký</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr width="90%" size="100px" align="center"/>
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="tour-booking-form">
+                        <h:messages class="alert alert-danger list-unstyled" />
+                        <h:form enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                    <div class="form-group">
+                                        <h:outputLabel value="Họ tên" />
+                                        <h:inputText styleClass="form-control" value="#{userBean.name}" p:placeholder="Nhập họ tên" required="true" requiredMessage="Vui lòng nhập họ tên" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['user.user_name']}" />
+                                        <h:inputText styleClass="form-control" value="#{userBean.user_name}" p:placeholder="#{Msg['user.user_name']}" required="true" requiredMessage="Vui lòng nhập tên đăng nhập"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['user.password']}" />
+                                        <h:inputSecret id="txtPassword" styleClass="form-control" value="#{userBean.password}" p:placeholder="#{Msg['user.password']}" required="true" requiredMessage="Vui lòng nhập mật khẩu" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['user.confirm_password']}" />
+                                        <h:inputSecret id="txtConfirmPassword" styleClass="form-control" value="#{userBean.confirmPassword}" p:placeholder="#{Msg['user.confirm_password']}" required="true" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['image']}" />
+                                        <h:inputFile class="input-img" id="image_upload" value="#{userBean.imageFile}" validator="UploadImageValidator"  required="true" requiredMessage="Vui lòng chọn 1 ảnh" />
+                                        <h:outputLabel class="instead-img" for="image_upload" >
+                                            <h:graphicImage class="image_preview_container" name="preview.jpg" library="images" alt="preview image" />
+                                        </h:outputLabel>
+                                        <h:message for="image_upload" />
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel value="#{Msg['user.email']}" />
+                                        <h:inputText styleClass="form-control" value="#{userBean.email}" p:placeholder="#{Msg['user.email']}" required="true" rendered="Vui lòng nhập Email" />
+                                    </div>
+                                    <h:commandButton value="Đăng ký" action="#{userBean.addUser()}" class="btn btn-primary" style="margin: 0 37%;" /> 
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

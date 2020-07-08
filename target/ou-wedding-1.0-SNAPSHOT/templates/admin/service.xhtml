@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+    <h:body>
+        <ui:composition template="layout/base.xhtml">
+            <ui:define name="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <c:if test="#{serviceBean.svId > 0}">
+                                <h1 class="page-header">#{Msg['services.update']}</h1>
+                            </c:if>
+                            <c:if test="#{serviceBean.svId == 0}">
+                                <h1 class="page-header">#{Msg['services.add']}</h1>
+                            </c:if>
+                        </div>
+                        <div class="col-lg-7" style="padding-bottom:120px">
+                            <h:form enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['services.name']}" />
+                                    <h:inputText styleClass="form-control" value="#{serviceBean.name}" p:placeholder="#{Msg['services.name']}" required="true" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['image']}" />
+                                    <h:inputFile class="input-img" id="image_upload" value="#{serviceBean.image}" validator="UploadImageValidator" />
+                                    <h:outputLabel class="instead-img" for="image_upload" >
+                                        <c:if test="#{serviceBean.svId > 0}">
+                                            <h:graphicImage class="image_preview_container" name="services/#{serviceBean.image_name}" library="images" alt="preview image" />
+                                        </c:if>
+                                        <c:if test="#{serviceBean.svId == 0}">
+                                            <h:graphicImage class="image_preview_container" name="preview.jpg" library="images" alt="preview image" />
+                                        </c:if>
+                                    </h:outputLabel>
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['services.description']}" />
+                                    <h:inputTextarea styleClass="form-control ckeditor" value="#{serviceBean.description}" p:placeholder="#{Msg['services.description']}" required="true" />
+                                </div>
+                                <div class="form-group">
+                                    <h:outputLabel value="#{Msg['services.price']}" />
+                                    <h:inputText styleClass="form-control" value="#{serviceBean.price}" p:placeholder="#{Msg['services.price']}" required="true" />
+                                </div>
+                                <h:inputHidden value="#{serviceBean.svId}" />
+                                <h:commandButton value="#{Msg['submit']}" action="#{serviceBean.addService}" class="btn btn-danger" /> 
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <h:outputScript target="body">
+                    $('#service').addClass('active');
+                </h:outputScript>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
